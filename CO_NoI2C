@@ -26,7 +26,7 @@
 #define _XTAL_FREQ 4000000 
 
 #define MQ7_PIN AN7  // Pin analógico del sensor MQ-7
-#define CO_PPM_MAX 10000  // Máxima concentración de CO detectada por el sensor MQ-7 (en ppm)
+#define CO_PPM_MAX 255  // Máxima concentración de CO detectada por el sensor MQ-7 (en ppm)
 #define VREF 5.0  // Voltaje de referencia para la conversión analógica a digital (ADC
 
 int adc_value = 0;
