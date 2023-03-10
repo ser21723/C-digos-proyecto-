@@ -1,12 +1,12 @@
 //******************************************************************************
 //   UNIVERSIDAD DEL VALLE DE GUATEMALA
-//   IE2023 PROGRAAMACI�N DE MICROCONTROLADORES 
+//   IE2023 PROGRAAMACIÓN DE MICROCONTROLADORES 
 //   AUTOR: MICHELLE SERRANO
 //   COMPILADOR: XC8 (v1.41), MPLAB X IDE (v6.00)
 //   PROYECTO: LABORATORIO 5
 //   HARDWARE: PIC16F887
 //   CREADO: 17/10/2022
-//   �LTIMA MODIFCACI�N: 17/10/2022
+//   ÚLTIMA MODIFCACIÓN: 17/10/2022
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT
@@ -44,7 +44,7 @@ void main(void);
 unsigned int pot3 = 0;
 unsigned int valor = 0;
 //******************************************************************************
-// Código Principal
+// CÃ³digo Principal
 //******************************************************************************
 void main(void) {
     setup();
@@ -55,16 +55,16 @@ void main(void) {
     timer0();
     
     while(1){
-        if (ADIF == 1) {                        //Interrupci�n ADC
+        if (ADIF == 1) {                        //Interrupción ADC
         if(ADCON0bits.CHS == 0){
-            CCPR1L = (ADRESH>>1)+124;       //180�
-            CCP1CONbits.DC1B1 = ADRESH & 0b01; // presici�n 
+            CCPR1L = (ADRESH>>1)+124;       //180°
+            CCP1CONbits.DC1B1 = ADRESH & 0b01; // presición 
             CCP1CONbits.DC1B0 = (ADRESL>>7);
             ADCON0bits.CHS = 1;             
         }
 
         else{
-            CCPR2L = (ADRESH>>1)+124; //180�
+            CCPR2L = (ADRESH>>1)+124; //180°
             CCP2CONbits.DC2B1 = ADRESH & 0b01;//precision
             CCP2CONbits.DC2B0 = (ADRESL>>7);
             ADCON0bits.CHS = 0;    
@@ -73,14 +73,14 @@ void main(void) {
         
         __delay_us(20);             //delay de 20 us
         PIR1bits.ADIF = 0;          
-        ADCON0bits.GO = 1;          //inicio de conversi�n
+        ADCON0bits.GO = 1;          //inicio de conversión
     }
 
 }
 }
 
 //******************************************************************************
-// Función para configurar puerto
+// FunciÃ³n para configurar puerto
 //******************************************************************************
 void setup(void){
     ANSELH = 0;
@@ -90,14 +90,14 @@ void setup(void){
     PORTC = 0;          // limpiamos
 }
 //******************************************************************************
-// Función para configurar PWM
+// FunciÃ³n para configurar PWM
 //******************************************************************************
 void setupINTOSC(void){
     OSCCONbits.IRCF = 0b0111;       // 8 MHz
     OSCCONbits.SCS = 1;
 }
 //******************************************************************************
-// Función para configurar ADC
+// FunciÃ³n para configurar ADC
 //******************************************************************************
 void setupADC(void){
     
@@ -123,14 +123,14 @@ void setupADC(void){
     
     //interrupciones
     PIR1bits.ADIF = 0;
-    PIE1bits.ADIE = 1;              //interrupci�n del  ADC
+    PIE1bits.ADIE = 1;              //interrupción del  ADC
     INTCONbits.PEIE = 1;            
     INTCONbits.GIE  = 1;            
     ADCON0bits.GO = 1; 
     
 }
 //******************************************************************************
-// Función para configurar PWM
+// FunciÃ³n para configurar PWM
 //******************************************************************************
 void setupPWM(void){
     
